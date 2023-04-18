@@ -1,15 +1,19 @@
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = megaphone
-RM = rm -fr
-SRC = megaphone.cpp
 
-$(NAME): 
-	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+CFLAGS = -Wall -Wextra -Werror -std=c++98
+
+RM = rm -fr
+
+NAME = megaphone
+
+SRC = megaphone.cpp
 
 all: $(NAME)
 
-fclean: 
+$(NAME):
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+
+fclean:
 	$(RM) $(NAME)
 
 re: fclean all

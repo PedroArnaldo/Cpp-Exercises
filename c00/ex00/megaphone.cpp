@@ -1,22 +1,20 @@
 #include <iostream>
-#include <cctype>
+#include <cstring>
 
-using namespace std;
-
-void	to_upper(int argc, char **argv)
+void	to_upper(char **argv)
 {
-	int i;
-
-	i = 0;
-	while (i < argc)
+	for (size_t word = 1; argv[word]; word++)
 	{
-		for(char c : argv[i])
-			cout << toupper(c);
+		for(size_t letter = 0; letter < strlen(argv[word]); letter++)
+			std::cout << (char) toupper(argv[word][letter]);
 	}
+	std::cout << std::endl;
 }
 
 int	main(int argc, char **argv)
 {
-	cout << "Hello World!";
+	if (argc == 1)
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
+	to_upper(argv);
 	return (0);
 }
