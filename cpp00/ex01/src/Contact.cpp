@@ -1,5 +1,18 @@
 #include "../include/Contact.hpp"
 
+Contact::Contact()
+{
+}
+
+Contact::~Contact()
+{
+}
+
+int Contact::getId(void)
+{
+	return (this->_id);
+}
+
 std::string Contact::getFirstName(void)
 {
 	return (this->_firstName);
@@ -25,6 +38,11 @@ std::string Contact::getDarkestSecret(void)
 	return (this->_darkestSecret);
 }
 
+void Contact::setId(int id)
+{
+	this->_id = id;
+}
+
 void Contact::setFirstName(std::string firstName)
 {
 	this->_firstName = firstName;
@@ -35,7 +53,7 @@ void Contact::setLastName(std::string lastName)
 	this->_lastName = lastName;
 }
 
-void Contact::setNicktName(std::string nickName)
+void Contact::setNickName(std::string nickName)
 {
 	this->_nickName = nickName;
 }

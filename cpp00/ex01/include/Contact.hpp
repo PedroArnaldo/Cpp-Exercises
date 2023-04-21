@@ -24,13 +24,11 @@ class Contact
 		std::string getPhoneNumber(void);
 		std::string getDarkestSecret(void);
 
-		void setId();
+		void setId(int id);
 		void setFirstName(std::string value);
 		void setLastName(std::string value);
 		void setNickName(std::string value);
 		void setPhoneNumber(std::string value);
 		void setDarkestSecret(std::string value);
-
-		std::string alterName(std::string name);
 };
 #endif

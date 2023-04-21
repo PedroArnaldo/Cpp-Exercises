@@ -1,13 +1,12 @@
 #include "include/Contact.hpp"
+#include "include/PhoneBook.hpp"
 #include <iostream>
 
 int main(void)
 {
-	Contact contact;
-
-	contact.setFirstName("Pedro");
-
-	std::cout << contact.getFirstName() << std::endl;
-
+	PhoneBook phoneBook;
+	
+	phoneBook.addContact();
+	phoneBook.searchContact();
 	return (0);
 }
