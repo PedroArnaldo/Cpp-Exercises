@@ -25,10 +25,10 @@ class Contact
 		std::string getDarkestSecret(void);
 
 		void setId(int id);
-		void setFirstName(std::string value);
-		void setLastName(std::string value);
-		void setNickName(std::string value);
-		void setPhoneNumber(std::string value);
-		void setDarkestSecret(std::string value);
+		void setFirstName(std::string firstName);
+		void setLastName(std::string lastName);
+		void setNickName(std::string nickName);
+		void setPhoneNumber(std::string phoneNumber);
+		void setDarkestSecret(std::string darkestSecret);
 };
 #endif

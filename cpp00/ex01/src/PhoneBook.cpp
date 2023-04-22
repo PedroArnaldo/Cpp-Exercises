@@ -30,35 +30,77 @@ void PhoneBook::addContact(void)
 	{
 		std::cout << "Insert last name: ";
 		std::getline (std::cin, buffer);
-		_contacts[id].setFirstName(buffer);
+		_contacts[id].setLastName(buffer);
 	}
 	buffer.clear();
 	while (buffer.empty()) 
 	{
 		std::cout << "Insert nickname: ";
 		std::getline (std::cin, buffer);
-		_contacts[id].setFirstName(buffer);
+		_contacts[id].setNickName(buffer);
+	}	
+	buffer.clear();
+	while (buffer.empty()) 
+	{
+		std::cout << "Insert Phone number: ";
+		std::getline (std::cin, buffer);
+		_contacts[id].setPhoneNumber(buffer);
 	}
+	buffer.clear();
+	while (buffer.empty()) 
+	{
+		std::cout << "Insert Darkest secreat: ";
+		std::getline (std::cin, buffer);
+		_contacts[id].setDarkestSecret(buffer);
+	}
+	_contacts[id].setId(id);
+	if (_totalContacts == 7)
+		_totalContacts = 0;
 	this->_totalContacts++;
-	return ;
 }
 
 void PhoneBook::searchContact(void)
 {
-	std::cout << std::setw(10) << "Index";
-	std::cout << " | ";
-	std::cout << std::setw(10) << "First Name";
-	std::cout << " | ";
-	std::cout << std::setw(10) << "Last Name";
-	std::cout << " | ";
-	std::cout << std::setw(10) << "Nick Name" << std::endl;
+	int	i;
 
-	std::cout << _contacts[0].getFirstName() << std::endl;
+	i = 0;
+	std::cout << std::setw(10) << std::right << "Index";
+	std::cout << "|";
+	std::cout << std::setw(10) << std::right  << "First Name";
+	std::cout << "|";
+	std::cout << std::setw(10) << std::right << "Last Name";
+	std::cout << "|";
+	std::cout << std::setw(10) << std::right << "Nick Name" << std::endl;
+	while (i < this->_totalContacts)
+	{
+		std::cout << std::setw(10) << std::right << _contacts[i].getId();
+		std::cout << "|";
+		std::cout << std::setw(10) << std::right  << _contacts[i].getFirstName();
+		std::cout << "|";
+		std::cout << std::setw(10) << std::right << _contacts[i].getLastName();
+		std::cout << "|";
+		std::cout << std::setw(10) << std::right << _contacts[i].getNickName() << std::endl;
+		i++;
+	}
+	searchContactId();
 }
 
-void PhoneBook::exit(void)
+void PhoneBook::searchContactId(void)
 {
-	return ;
+	int id;
+
+	std::cout << "Enter a contact id: ";
+	std::cin >> id;
+	if (std::cin.eof())
+		return ;
+	if (id > -1 && id < 8)
+	{
+		std::cout << std::setw(10) << std::right << _contacts[id].getId();
+		std::cout << "|";
+		std::cout << std::setw(10) << std::right  << _contacts[id].getFirstName();
+		std::cout << "|";
+		std::cout << std::setw(10) << std::right << _contacts[id].getLastName();
+		std::cout << "|";
+		std::cout << std::setw(10) << std::right << _contacts[id].getNickName() << std::endl;
+	}
 }
-
-

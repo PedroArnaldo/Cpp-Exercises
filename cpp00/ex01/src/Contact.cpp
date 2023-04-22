@@ -1,11 +1,13 @@
 #include "../include/Contact.hpp"
 
-Contact::Contact()
+Contact::Contact(void)
 {
+	return ;
 }
 
-Contact::~Contact()
+Contact::~Contact(void)
 {
+	return ;
 }
 
 int Contact::getId(void)

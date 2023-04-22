@@ -18,9 +18,7 @@ class PhoneBook
 
 		void addContact(void);
 		void searchContact(void);
-		void exit(void);
+		void searchContactId(void);
 };
 
 #endif
-
-
