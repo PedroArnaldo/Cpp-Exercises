@@ -82,6 +82,7 @@ void PhoneBook::searchContact(void)
 		std::cout << std::setw(10) << std::right << _contacts[i].getNickName() << std::endl;
 		i++;
 	}
+	//fazer um try cat
 	searchContactId();
 }
 
@@ -93,6 +94,7 @@ void PhoneBook::searchContactId(void)
 	std::cin >> id;
 	if (std::cin.eof())
 		return ;
+	//Fazer um 
 	if (id > -1 && id < 8)
 	{
 		std::cout << std::setw(10) << std::right << _contacts[id].getId();

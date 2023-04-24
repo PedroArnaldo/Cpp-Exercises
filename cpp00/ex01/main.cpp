@@ -1,6 +1,7 @@
 #include "include/Contact.hpp"
 #include "include/PhoneBook.hpp"
 #include <iostream>
+#include <cstdlib>
 
 void optionPhoneBook(std::string buffer, PhoneBook& phoneBook)
 {
@@ -12,7 +13,7 @@ void optionPhoneBook(std::string buffer, PhoneBook& phoneBook)
 
 void printMenu(void)
 {
-	std::cout << "Enter ADD to add a new contact or SEARCH to search for new contacts" << std::endl;
+	std::cout << "Enter:" << std::endl << " ADD | SEARCH | EXIT" << std::endl;
 }
 
 int main(void)
@@ -23,6 +24,7 @@ int main(void)
 	printMenu();
 	while (42)
 	{
+		std::cout << "> ";
 		std::getline(std::cin, buffer);
 		if (std::cin.eof())
 			break;
