@@ -13,7 +13,7 @@ void optionPhoneBook(std::string buffer, PhoneBook& phoneBook)
 
 void printMenu(void)
 {
-	std::cout << "Enter:" << std::endl << " ADD | SEARCH | EXIT" << std::endl;
+	std::cout << std::endl << " ADD | SEARCH | EXIT" << std::endl;
 }
 
 int main(void)

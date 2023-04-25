@@ -5,12 +5,14 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <cstdlib>
 
 class PhoneBook
 {
 	private:
 		Contact	_contacts[8];
 		int		_totalContacts;
+		int		_idContact;
 	
 	public:
 		PhoneBook(void);
@@ -18,7 +20,7 @@ class PhoneBook
 
 		void addContact(void);
 		void searchContact(void);
-		void searchContactId(void);
+		void searchContactId(int id);
 };
 
 #endif
