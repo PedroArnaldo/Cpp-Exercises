@@ -3,10 +3,11 @@
 
 int main(void)
 {
-	Zombie zombie = Zombie("Test - Zombie");
+	Zombie *zombie;
 
-	std::cout << "Teste" << std::endl;
-
-	zombie.announce();
+	zombie = newZombie("Teste00");
+	zombie->announce();
+	randomChump("Teste01");
+	delete zombie;
 	return (0);
 }
