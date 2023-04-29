@@ -1,4 +1,5 @@
 #include "../include/PhoneBook.hpp"
+#include <stdio.h>
 
 void printTable(void);
 std::string truncate(std::string str);
@@ -7,12 +8,12 @@ PhoneBook::PhoneBook(void)
 {
 	std::cout << "PhoneBook constructor" << std::endl;
 	this->_totalContacts = 0;
+	this->_idContact = 0;
 	return ;
 }
 
 PhoneBook::~PhoneBook(void)
 {
-	std::cout << "Phonebook destructor" << std::endl;
 	return ;
 }
 
@@ -57,11 +58,12 @@ void PhoneBook::addContact(void)
 		_contacts[id].setDarkestSecret(buffer);
 	}
 	_contacts[id].setId(id);
-	if (_totalContacts < 7)
+	if (_totalContacts <= 7)
 		this->_totalContacts++;
 	if (_idContact == 7)
-		this->_idContact = 0;
+		this->_idContact = -1;
 	this->_idContact++;	
+	
 }
 
 void PhoneBook::searchContact(void)
@@ -70,7 +72,7 @@ void PhoneBook::searchContact(void)
 	
 	printTable();
 	i = 0;
-	while (i <= this->_totalContacts)
+	while (i < this->_totalContacts)
 	{
 		std::cout << std::right << std::setw(10) << _contacts[i].getId() + 1;
 		std::cout << "|";
@@ -88,7 +90,7 @@ void PhoneBook::searchContact(void)
 		std::getline(std::cin, id);
 		if (std::cin.eof())
 			return ;
-		searchContactId(atoi(id.c_str()));
+		searchContactId(atoi(id.c_str()) - 1);
 	}
 	catch(const std::exception& e)
 	{
@@ -98,16 +100,17 @@ void PhoneBook::searchContact(void)
 
 void PhoneBook::searchContactId(int id)
 {
-	if (id > 0 && id < 8)
+	if (id >= 0 && id <= 7 && !_contacts[id].getFirstName().empty())
 	{
-		std::cout << std::right << std::setw(10) << "ID: " << _contacts[id].getId() << std::endl;
-		std::cout << std::right << std::setw(10) << "Firstname: " << _contacts[id].getFirstName()  << std::endl;
-		std::cout << std::right << std::setw(10) << "Lastname: " << _contacts[id].getLastName()  << std::endl;
-		std::cout << std::right << std::setw(10) << "Nickname: " << _contacts[id].getNickName() << std::endl;
-		std::cout << std::right << std::setw(10) << "Phone number: " << _contacts[id].getPhoneNumber() << std::endl;
-		std::cout << std::right << std::setw(10) << "Darkest secreat: " << _contacts[id].getDarkestSecret() << std::endl;
-
+		std::cout << std::left << std::setw(10) << "ID: " << _contacts[id].getId() << std::endl;
+		std::cout << std::left << std::setw(10) << "Firstname: " << _contacts[id].getFirstName()  << std::endl;
+		std::cout << std::left << std::setw(10) << "Lastname: " << _contacts[id].getLastName()  << std::endl;
+		std::cout << std::left << std::setw(10) << "Nickname: " << _contacts[id].getNickName() << std::endl;
+		std::cout << std::left << std::setw(10) << "Phone number: " << _contacts[id].getPhoneNumber() << std::endl;
+		std::cout << std::left << std::setw(10) << "Darkest secreat: " << _contacts[id].getDarkestSecret() << std::endl;
 	}
+	else
+		std::cout << std::right << std::setw(10) << "Sorry this command is not valid." << std::endl;
 }
 
 void printTable(void)

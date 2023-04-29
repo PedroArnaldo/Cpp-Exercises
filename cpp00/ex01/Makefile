@@ -2,7 +2,7 @@ NAME = note
 
 CC = c++
 
-CPPFLAGS = -Wextra -Wall -Werror -std=c++98
+CPPFLAGS = -g -Wextra -Wall -Werror -std=c++98
 
 FILES = PhoneBook.cpp Contact.cpp
 
