@@ -2,6 +2,7 @@
 
 Zombie::Zombie(void)
 {
+	std::cout << "OI" << std::endl;
 	return ;
 }
 

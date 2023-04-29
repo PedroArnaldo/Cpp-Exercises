@@ -4,7 +4,7 @@ CPP = c++
 
 CPPFLAGS = -Wextra -Wall -Werror -std=c++98
 
-SOURCE = Zombie.cpp main.cpp newZombie.cpp randomChump.cpp
+SOURCE = Zombie.cpp main.cpp zombieHorde.cpp
 
 all: $(NAME)
 
