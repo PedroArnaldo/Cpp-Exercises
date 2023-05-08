@@ -2,12 +2,13 @@
 
 Zombie::Zombie(void)
 {
-	std::cout << "OI" << std::endl;
+	std::cout << "Constructor zombie" << std::endl;
 	return ;
 }
 
 Zombie::~Zombie(void)
 {
+	std::cout << "Destructor zombie" << std::endl;
 	return ;
 }
 

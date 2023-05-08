@@ -3,9 +3,11 @@
 int main(void)
 {
 	Zombie *zombie;
+	int		numberZombie;
 
-	zombie = zombieHorde(4, "zombieTeste");
-	for (int i = 0; i < 4; i++)
+	numberZombie = 10;
+	zombie = zombieHorde(numberZombie, "zombieTeste");
+	for (int i = 0; i < numberZombie; i++)
 	{
 		std::cout << zombie->getName() << " " << i << std::endl;
 	}
