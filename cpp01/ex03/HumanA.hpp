@@ -2,12 +2,13 @@
 #define HUMANA_HPP
 
 #include <iostream>
+#include "Weapon.hpp"
 
 class HumanA
 {
 	private:
 		std::string _name;
-		const Weapon _weapon;
+		Weapon& _weapon;
 	
 	public:
 		HumanA(std::string name, Weapon& weapon);
@@ -17,5 +18,5 @@ class HumanA
 		Weapon getWeapon(void) const;
 		void setWeapon(const Weapon& weapon);
 		void attack(void) const;
-}
+};
 #endif
