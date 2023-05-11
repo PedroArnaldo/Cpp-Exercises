@@ -4,7 +4,7 @@ CPP = c++
 
 CPPFLAGS = -Wextra -Wall -Werror -std=c++98
 
-SOURCE = main.cpp Weapon.cpp HumanA.cpp
+SOURCE = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 
 all: $(NAME)
 
