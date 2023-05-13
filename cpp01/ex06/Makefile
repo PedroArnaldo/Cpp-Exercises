@@ -1,15 +1,15 @@
-NAME = replace
+NAME = harlFilter
 
 CPP = c++
 
-CPPFLGS = -Wextra -Wall -Werror -std=c++98
+CPPFLAGS = -Wextra -Wall -Werror -std=c++98
 
-SOURCE = main.cpp
+SOURCE = main.cpp Harl.cpp
 
 all: $(NAME)
 
 $(NAME): $(SOURCE)
-	$(CPP) $(CPPFLGS) $(SOURCE) -o $(NAME)
+	$(CPP) $(CPPFLAGS) $(SOURCE) -o $(NAME)
 
 clean:
 	rm -fr $(NAME)
