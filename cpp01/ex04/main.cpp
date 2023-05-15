@@ -25,29 +25,26 @@ int	main(int argc, char **argv)
 		std::cout << "Invalid parameter." << std::endl;
 		return (1);
 	}
-	/*Receba os parâmetros e atribua as variável*/
 	std::string fileName = argv[1];
 	std::string s1 = argv[2];
 	std::string s2 = argv[3];
 	std::string line;
-
-	/*Abrir um arquivo*/
 	std::ifstream file;
 	std::fstream newfile;
+	std::string str = ".replace";
+	std::string newFileName = fileName + str;
 
 	file.open(fileName.c_str());
 	if (file.is_open())
 	{
-		/*Copiar esse arquivo para variavel*/
 		if (file.peek() == std::ifstream::traits_type::eof())
 		{
 			std::cout << "Error" << std::endl;
 			return (1);
 		}
-		newfile.open("text_cpy.txt", std::fstream::out);
+		newfile.open(newFileName, std::fstream::out);
 		while (getline(file, line))
 		{
-			/*Substituir ocorrência de s1 por s2*/
 			line = replaceWords(line, s1, s2);
 			newfile << line << std::endl;
 		}
