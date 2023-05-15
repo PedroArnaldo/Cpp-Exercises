@@ -2,14 +2,12 @@
 
 Zombie::Zombie(void)
 {
-	std::cout << "Constructor zombie" << std::endl;
-	return ;
+
 }
 
 Zombie::~Zombie(void)
 {
-	std::cout << "Destructor zombie" << std::endl;
-	return ;
+	std::cout << getName() << " Destructor zombie" << std::endl;
 }
 
 void Zombie::setName(std::string name)
@@ -20,4 +18,9 @@ void Zombie::setName(std::string name)
 std::string Zombie::getName(void)
 {
 	return (this->_name);
+}
+
+void Zombie::announce(void)
+{
+	std::cout << this->_name << " BraiiiiiiinnnzzzZ..." << std::endl;
 }

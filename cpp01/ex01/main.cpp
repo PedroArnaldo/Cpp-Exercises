@@ -9,7 +9,7 @@ int main(void)
 	zombie = zombieHorde(numberZombie, "zombieTeste");
 	for (int i = 0; i < numberZombie; i++)
 	{
-		std::cout << zombie->getName() << " " << i << std::endl;
+		zombie->announce();
 	}
 	delete[] zombie;
 	return (0);

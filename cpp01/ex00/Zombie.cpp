@@ -2,12 +2,16 @@
 
 Zombie::Zombie(void)
 {
-	return ;
+}
+
+Zombie::Zombie(std::string name)
+{
+	setName(name);
 }
 
 Zombie::~Zombie(void)
 {
-	return ;
+	std::cout << getName() << " destructor." << std::endl;
 }
 
 void Zombie::setName(std::string name)

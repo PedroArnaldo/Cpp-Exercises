@@ -2,20 +2,14 @@
 #include <fstream>
 #include <sstream>
 
-std::string replaceWords(const std::string& text, const std::string& targetWord, const std::string& wordReplacement)
+std::string replaceWords(std::string text, std::string targetWord, std::string wordReplacement)
 {
-	std::istringstream iss(text);
-    std::ostringstream oss;
-    std::string word;
+	std::string txt;
 
-    while (iss >> word) {
-        if (word == targetWord) {
-            oss << wordReplacement << " ";
-        } else {
-            oss << word << " ";
-        }
-    }
-    return oss.str();
+	std::cout << wordReplacement;
+	txt = text.find(targetWord);
+	std::cout << txt;
+	return (txt);
 }
 
 int	main(int argc, char **argv)
