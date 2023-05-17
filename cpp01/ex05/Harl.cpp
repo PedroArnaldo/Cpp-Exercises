@@ -10,35 +10,43 @@ Harl::~Harl(void)
 
 }
 
-void Harl::debug(void) const
+void Harl::debug(void)
 {
     std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!" << std::endl;
 }
 
-void Harl::info(void) const
+void Harl::info(void)
 {
     std::cout << "I cannot believe adding extra bacon costs more money. You didn’t put enough bacon in my burger! If you did, I wouldn’t be asking for more!" << std::endl;
 }
 
-void Harl::warning(void) const
+void Harl::warning(void)
 {
     std::cout << "I think I deserve to have some extra bacon for free. I’ve been coming for years whereas you started working here since last month." << std::endl;
 }
 
-void Harl::error(void) const
+void Harl::error(void)
 {
     std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
 void Harl::complain(std::string level)
 {
-    std::map<std::string, void (Harl::*)(void) const> map_fc;
-
-    map_fc["debug"] = &Harl::debug;
-    map_fc["info"] = &Harl::info;
-    map_fc["warning"] = &Harl::warning;
-    map_fc["error"] = &Harl::error;
-
-    if( map_fc.find(level) != map_fc.end())
-        (this->*map_fc[level])();
+    void (Harl::*functions[4])() = {
+        &Harl::debug,
+        &Harl::info,
+        &Harl::warning,
+        &Harl::error,
+    };
+   
+    std::string nameFn[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    int index = -1;
+    
+    for (int i = 0; i < (int) nameFn->length(); i++)
+    {
+        if(level == nameFn[i])
+            index = i;
+    }
+    if (index >= 0 && index <= 3)
+        (this->*functions[index])();
 }

@@ -10,28 +10,25 @@ Harl::~Harl(void)
 
 }
 
-void Harl::debug(void) const
+void Harl::debug(void)
 {
     std::cout << "[ DEBUG ]" << std::endl;  
-    std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-
-ketchup burger. I really do!" << std::endl << std::endl;
+    std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!" << std::endl << std::endl;
 }
 
-void Harl::info(void) const
+void Harl::info(void)
 {
     std::cout << "[ INFO ]" << std::endl;
-    std::cout << "I cannot believe adding extra bacon costs more money. You didn’t put
-enough bacon in my burger! If you did, I wouldn’t be asking for more!" << std::endl << std::endl;
+    std::cout << "I cannot believe adding extra bacon costs more money. You didn’t put enough bacon in my burger! If you did, I wouldn’t be asking for more!" << std::endl << std::endl;
 }
 
-void Harl::warning(void) const
+void Harl::warning(void)
 {
     std::cout << "[ WARNING ]" << std::endl;
-    std::cout << "I think I deserve to have some extra bacon for free. I’ve been coming for
-years whereas you started working here since last month." << std::endl << std::endl;
+    std::cout << "I think I deserve to have some extra bacon for free. I’ve been coming for years whereas you started working here since last month." << std::endl << std::endl;
 }
 
-void Harl::error(void) const
+void Harl::error(void)
 {
     std::cout << "[ ERROR ]" << std::endl;
     std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl << std::endl;
@@ -39,26 +36,31 @@ void Harl::error(void) const
 
 void Harl::complain(std::string level)
 {
-    std::map<std::string, int> map_fc;
-    int selector = -1;
-
-    map_fc["DEBUG"] = 0;
-    map_fc["INFO"] = 1;
-    map_fc["WARNING"] = 2;
-    map_fc["ERROR"] = 3;
-
-    if( map_fc.find(level) != map_fc.end())
-            selector = map_fc[level];
+    void (Harl::*functions[4])() = {
+        &Harl::debug,
+        &Harl::info,
+        &Harl::warning,
+        &Harl::error,
+    };
+   
+    std::string nameFn[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    int index = -1;
     
-    switch (selector){
+    for (int i = 0; i < (int) nameFn->length(); i++)
+    {
+        if(level == nameFn[i])
+            index = i;
+    }
+    
+    switch (index){
         case 0:
-            this->debug();
+            (this->*functions[0])();
         case 1:
-            this->info();
+            (this->*functions[1])();
         case 2: 
-            this->warning();
+            (this->*functions[2])();
         case 3:
-            this->error();
+            (this->*functions[3])();
             break;
         default:
             std::cout << "[ Probably complaining about insignificant problems ]" << std::endl << std::endl;

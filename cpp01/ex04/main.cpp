@@ -2,15 +2,17 @@
 #include <fstream>
 #include <sstream>
 
-std::string replaceWords(std::string text, std::string targetWord, std::string wordReplacement)
+void replace(std::string& line, const std::string& search, const std::string& replace) 
 {
-	std::string txt;
+    size_t pos = 0;
 
-	std::cout << wordReplacement;
-	txt = text.find(targetWord);
-	std::cout << txt;
-	return (txt);
+    while ((pos = line.find(search, pos)) != std::string::npos) 
+	{
+        line = line.substr(0, pos) + replace + line.substr(pos + search.length());
+        pos += replace.length();
+    }
 }
+	
 
 int	main(int argc, char **argv)
 {
@@ -39,7 +41,7 @@ int	main(int argc, char **argv)
 		newfile.open(newFileName, std::fstream::out);
 		while (getline(file, line))
 		{
-			line = replaceWords(line, s1, s2);
+			replace(line, s1, s2);
 			newfile << line << std::endl;
 		}
 		file.close();
