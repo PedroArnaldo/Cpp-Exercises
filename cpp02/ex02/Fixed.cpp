@@ -2,33 +2,27 @@
 
 Fixed::Fixed(void): _value(0)
 {
-    std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(Fixed const &src)
 {
-    std::cout << "Copy constructor called" << std::endl;
     *this = src;
 }
 
 Fixed::Fixed(const int num) : _value(num << this->bitsFixedPoint)
 {
-    std::cout << "Int constructor called" << std::endl;
 }
 
 Fixed::Fixed(const float num) : _value(int(round((num * (1 << this->bitsFixedPoint)))))
 {
-    std::cout << "Float constructor called" << std::endl;
 }
 
 Fixed::~Fixed(void)
 {
-    std::cout << "Destructor called" << std::endl;
 }
 
 Fixed &Fixed::operator=(Fixed const &obj)
 {
-    std::cout << "Copy assigment operator called" << std::endl;
     this->_value = obj.getRawBits();
     return *this;
 }
@@ -61,6 +55,78 @@ bool  Fixed::operator==(Fixed const &obj)
 bool  Fixed::operator!=(Fixed const &obj)
 {
     return this->_value != obj._value;
+}
+
+Fixed Fixed::operator+(Fixed const &obj)
+{
+    Fixed ret(this->_value + obj._value);
+    return  ret;
+}
+
+Fixed Fixed::operator-(Fixed const &obj)
+{
+   Fixed ret(this->_value - obj._value);
+    return  ret;
+}
+
+Fixed Fixed::operator*(Fixed const &obj)
+{
+    Fixed ret;
+    ret.setRawBits((this->getRawBits() * obj.getRawBits()) >> this->bitsFixedPoint);
+    return  ret;
+}
+
+Fixed Fixed::operator/(Fixed const &obj)
+{
+    Fixed ret;
+    ret.setRawBits((this->getRawBits() / obj.getRawBits()) << this->bitsFixedPoint);
+    return  ret;
+}
+
+Fixed &Fixed::operator++(void)
+{
+    this->_value++;
+    return (*this);
+}
+
+Fixed Fixed::operator++(int)
+{   
+    Fixed tmp(*this);
+    this->_value++;
+    return (tmp);
+}
+
+Fixed &Fixed::operator--(void)
+{
+    this->_value--;
+    return (*this);
+}
+
+Fixed Fixed::operator--(int)
+{   
+    Fixed tmp(*this);
+    this->_value--;
+    return (tmp);
+}
+
+const Fixed &Fixed::max(Fixed const &first, Fixed const &second)
+{
+    return (first.getRawBits() > second.getRawBits()? first : second);
+}
+
+Fixed &Fixed::max(Fixed &first, Fixed &second)
+{
+    return (first.getRawBits() > second.getRawBits()? first : second);
+}
+
+const Fixed &Fixed::min(Fixed const &first, Fixed const &second)
+{
+    return (first.getRawBits() < second.getRawBits()? first : second);
+}
+
+Fixed &Fixed::min(Fixed first, Fixed second)
+{
+    return (first.getRawBits() < second.getRawBits()? first : second);
 }
 
 int Fixed::getRawBits(void) const 
