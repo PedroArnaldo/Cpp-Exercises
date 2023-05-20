@@ -124,7 +124,7 @@ const Fixed &Fixed::min(Fixed const &first, Fixed const &second)
     return (first.getRawBits() < second.getRawBits()? first : second);
 }
 
-Fixed &Fixed::min(Fixed first, Fixed second)
+Fixed &Fixed::min(Fixed &first, Fixed &second)
 {
     return (first.getRawBits() < second.getRawBits()? first : second);
 }
