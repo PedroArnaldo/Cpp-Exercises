@@ -4,7 +4,7 @@ CPP = c++
 
 CPPFLGS = -Wextra -Wall -Werror -std=c++98
 
-SOURCE = main.cpp ClapTrap.cpp
+SOURCE = main.cpp ClapTrap.cpp ScavTrap.cpp
 
 all: $(NAME)
 
