@@ -2,14 +2,17 @@
 
 ClapTrap::ClapTrap(void)
 {
+     std::cout << "ClapTrap Default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name): _name(name), _hitPoint(10), _energyPoint(10), _attackDamage(0)
 {
+      std::cout << "ClapTrap Name constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(ClapTrap const &obj)
 {
+    std::cout << "ClapTrap Copy constructor called" << std::endl;
     this->_name = obj._name;
     this->_hitPoint = obj._hitPoint;
     this->_energyPoint = obj._energyPoint;
@@ -18,10 +21,12 @@ ClapTrap::ClapTrap(ClapTrap const &obj)
 
 ClapTrap::~ClapTrap(void)
 {
+    std::cout << "ClapTrap Destructor called" << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(ClapTrap const  &obj)
 {
+    std::cout << "ClapTrap Copy assigment operator called" << std::endl;
     this->_name = obj._name;
     this->_hitPoint = obj._hitPoint;
     this->_energyPoint = obj._energyPoint;
