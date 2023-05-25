@@ -2,7 +2,11 @@
 
 ClapTrap::ClapTrap(void)
 {
-     std::cout << "ClapTrap Default constructor called" << std::endl;
+    std::cout << "ClapTrap Default constructor called" << std::endl;
+    this->_name = "Bot";
+    this->_hitPoint = 10;
+    this->_energyPoint = 10;
+    this->_attackDamage = 0;
 }
 
 ClapTrap::ClapTrap(std::string name): _name(name), _hitPoint(10), _energyPoint(10), _attackDamage(0)
@@ -36,9 +40,9 @@ ClapTrap &ClapTrap::operator=(ClapTrap const  &obj)
 
 void ClapTrap::attack(const std::string &target)
 {
-    if (this->_hitPoint <= 0)
+    if (this->_hitPoint == 0)
         std::cout << "ClapTrap " << this->getName() << " is dead." << std::endl;
-    else if (this->_energyPoint <= 0)
+    else if (this->_energyPoint == 0)
         std::cout << "ClapTrap " << this->getName() << " is without energy to fight." << std::endl;
     else
     {
@@ -56,9 +60,9 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-    if (this->_hitPoint <= 0)
+    if (this->_hitPoint == 0)
         std::cout << "ClapTrap " << this->getName() << " is dead." << std::endl;
-    else if (this->_energyPoint <= 0)
+    else if (this->_energyPoint == 0)
         std::cout << "ClapTrap " << this->getName() << " is without energy to fight." << std::endl;
     else
     {
