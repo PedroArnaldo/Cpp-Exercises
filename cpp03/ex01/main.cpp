@@ -29,7 +29,7 @@ int main(void)
     scavTrapA.attack(scavTrapB.getName());
     scavTrapB.takeDamage(scavTrapA.getAttackDamage());
     scavTrapB.attack(scavTrapA.getName());
-    scavTrapA.highFivesGuys();
+    scavTrapA.guardGate();
     
     return (0);
 }
