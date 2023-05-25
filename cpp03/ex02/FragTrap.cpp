@@ -4,7 +4,7 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-FragTrap::FragTrap()
+FragTrap::FragTrap(void) : ClapTrap("Bot FragTrap", 100, 100, 30)
 {
    std::cout << "FragTrap Default constructor called" << std::endl;
 }
