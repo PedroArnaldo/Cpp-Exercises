@@ -3,8 +3,7 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
-{
+class ScavTrap : public ClapTrap{
         
         public:
         ScavTrap(void);
@@ -14,7 +13,8 @@ class ScavTrap : public ClapTrap
 
         ScavTrap &operator=(ScavTrap const &obj);
 
-        void highFivesGuys(void);
+        void attack(std::string const &target);
+        void guardGate(void);
 };
 
 #endif
