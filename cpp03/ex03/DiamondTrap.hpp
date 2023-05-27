@@ -16,7 +16,7 @@ class DiamondTrap : public ScavTrap, public FragTrap
 		DiamondTrap(DiamondTrap const &src);
 		~DiamondTrap();
 
-		DiamondTrap &operator=(DiamondTrap const &src);
+		DiamondTrap &operator=(const DiamondTrap &src);
 
 		void attack(std::string const &target);
 		void whoAmI(void);
@@ -25,7 +25,5 @@ class DiamondTrap : public ScavTrap, public FragTrap
 		std::string _name;
 
 };
-
-std::ostream &operator<<(std::ostream &os, const DiamondTrap &obj);
 
 #endif

@@ -34,12 +34,17 @@ ScavTrap &ScavTrap::operator=(ScavTrap const &obj)
     return (*this);
 }
 
-void ScavTrap::highFivesGuys(void)
+void ScavTrap::attack(std::string const &target)
 {
-    if (this->_hitPoint <= 0)
+    if (this->_hitPoint == 0)
         std::cout << "ClapTrap " << this->getName() << " is dead." << std::endl;
-    else if (this->_energyPoint <= 0)
+    else if (this->_energyPoint == 0)
         std::cout << "ClapTrap " << this->getName() << " is without energy to fight." << std::endl;
-    else
-        std::cout << "ScavTrap " << this->getName() << " is now in Gate keeper mode." << std::endl;
+    std::cout << "ScavTrap " << this->getName() << " attacks " << target << ", causing " << this->getAttackDamage() << " points of damage!" << std::endl;
+        this->_energyPoint--;
+}
+
+void ScavTrap::guardGate(void)
+{
+    std::cout << "ScavTrap " << this->getName() << " is now in Gate keeper mode." << std::endl;
 }

@@ -8,6 +8,6 @@ int main(void)
 
 
     bot.getName();
-    std::cout << bot;
+    //std::cout << bot;
     return (0);
 }

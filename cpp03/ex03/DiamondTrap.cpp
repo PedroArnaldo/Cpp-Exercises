@@ -8,7 +8,9 @@ DiamondTrap::DiamondTrap(void): ClapTrap("default_clap_name")
 	_attackDamage = FragTrap::_attackDamage;
 }
 
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name")
+DiamondTrap::DiamondTrap(std::string name) : 
+	ClapTrap(name + "_clap_name"),
+	_name(name + "_clap_name")
 {
 	std::cout << "Name constructor called of DimondTrap" << std::endl;
 	_name = name;
@@ -17,13 +19,13 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name")
 	_attackDamage = FragTrap::_attackDamage;
 }
 
-DiamondTrap::DiamondTrap(DiamondTrap const &src) : ClapTrap(src._name)
+DiamondTrap::DiamondTrap(const DiamondTrap &src) :
+	ClapTrap(src),
+	ScavTrap(src),
+	FragTrap(src)
 {
 	std::cout << "Copie constructor called of DimondTrap" << std::endl;
-	_name = src._name;
-	_hitPoint = src.FragTrap::_hitPoint;
-	_energyPoint = src.ScavTrap::_energyPoint;
-	_attackDamage = src.FragTrap::_attackDamage;
+	*this = src;
 }
 
 DiamondTrap::~DiamondTrap()
@@ -49,12 +51,4 @@ void DiamondTrap::attack(std::string const &target)
 void DiamondTrap::whoAmI(void)
 {
 	std::cout << "whoAmi(): DiamondTrap, my name: " << _name << ", claptrap name: " << ClapTrap::_name << std::endl;
-}
-
-std::ostream &operator<<(std::ostream &os, DiamondTrap &obj)
-{
-	os << "Name: " + obj.getName();
-	os << "HitPoint: " + obj.getHitPoint();
-
-	return os;
 }
