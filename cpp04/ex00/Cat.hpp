@@ -3,22 +3,22 @@
 
 # include <iostream>
 # include <string>
+# include "Animal.hpp"
 
-class Cat
+class Cat : public Animal
 {
 
 	public:
 
 		Cat();
-		Cat( Cat const & src );
+		Cat(Cat const &src);
 		~Cat();
 
-		Cat &		operator=( Cat const & rhs );
+		Cat &operator=(Cat const &src);
 
+		void makeSound() const;
 	private:
 
 };
 
-std::ostream &			operator<<( std::ostream & o, Cat const & i );
-
-#endif /* ************************************************************* CAT_H */
+#endif

@@ -1,55 +1,42 @@
 #include "Animal.hpp"
 
-/*
-** ------------------------------- CONSTRUCTOR --------------------------------
-*/
-
 Animal::Animal()
 {
+	std::cout << "Animal Constructor called" << std::endl;
+	this->type = "not found";
 }
 
-Animal::Animal( const Animal & src )
+Animal::Animal(std::string type)
 {
+	std::cout << "Animal String Constructor called" << std::endl;	
+	this->type = type;
 }
 
-
-/*
-** -------------------------------- DESTRUCTOR --------------------------------
-*/
+Animal::Animal(const Animal &src)
+{
+	std::cout << "Animal Copy Constructor called" << std::endl;
+	this->type = src.type;
+}
 
 Animal::~Animal()
 {
+	std::cout << "Animal Destructor called" << std::endl;
 }
 
-
-/*
-** --------------------------------- OVERLOAD ---------------------------------
-*/
-
-Animal &				Animal::operator=( Animal const & rhs )
+Animal &Animal::operator=( Animal const &src)
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	std::cout << "Animal Operator Assignment called" << std::endl;
+	this->type = src.type;
 	return *this;
 }
 
-std::ostream &			operator<<( std::ostream & o, Animal const & i )
+std::string const& Animal::getType(void) const
 {
-	//o << "Value = " << i.getValue();
-	return o;
+	std::cout << "Animal getType called" << std::endl;
+	return(this->type);
 }
 
-
-/*
-** --------------------------------- METHODS ----------------------------------
-*/
-
-
-/*
-** --------------------------------- ACCESSOR ---------------------------------
-*/
-
-
-/* ************************************************************************** */
+void Animal::makeSound() const
+{
+	std::cout << "Base class, makeSound not configured." << std::endl;
+}

@@ -10,16 +10,18 @@ class Animal
 	public:
 
 		Animal();
-		Animal( Animal const & src );
-		~Animal();
+		Animal(std::string type);
+		Animal(Animal const &src);
+		virtual ~Animal();
 
 		Animal &		operator=( Animal const & rhs );
+
+		std::string const& getType(void) const;
+		virtual void makeSound() const;
 
 	protected:
 		std::string type;
 
 };
 
-std::ostream &			operator<<( std::ostream & o, Animal const & i );
-
-#endif /* ********************************************************** ANIMAL_H */
+#endif

@@ -1,55 +1,32 @@
 #include "Cat.hpp"
 
-/*
-** ------------------------------- CONSTRUCTOR --------------------------------
-*/
-
-Cat::Cat()
+Cat::Cat() : Animal("Cat")
 {
+	std::cout << "Cat Constructor called" << std::endl;
 }
 
-Cat::Cat( const Cat & src )
+Cat::Cat(const Cat &src) : Animal("Cat")
 {
+	std::cout << "Cat Copy Constructor called" << std::endl;
+	*this = src;
 }
-
-
-/*
-** -------------------------------- DESTRUCTOR --------------------------------
-*/
 
 Cat::~Cat()
 {
+	std::cout << "Cat Destructor called" << std::endl;
 }
 
-
-/*
-** --------------------------------- OVERLOAD ---------------------------------
-*/
-
-Cat &				Cat::operator=( Cat const & rhs )
+Cat &Cat::operator=(Cat const & src)
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	std::cout << "Cat Operator Assignment called" << std::endl;
+	if (this != &src)
+	{
+		this->type = src.getType();
+	}
 	return *this;
 }
 
-std::ostream &			operator<<( std::ostream & o, Cat const & i )
+void Cat::makeSound() const
 {
-	//o << "Value = " << i.getValue();
-	return o;
+	std::cout << "MIAU MIAU MIAU" << std::endl;
 }
-
-
-/*
-** --------------------------------- METHODS ----------------------------------
-*/
-
-
-/*
-** --------------------------------- ACCESSOR ---------------------------------
-*/
-
-
-/* ************************************************************************** */

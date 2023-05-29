@@ -1,55 +1,32 @@
 #include "Dog.hpp"
 
-/*
-** ------------------------------- CONSTRUCTOR --------------------------------
-*/
-
-Dog::Dog()
+Dog::Dog() : Animal("Dog")
 {
+	std::cout << "Dog Constructor called" << std::endl; 
 }
 
-Dog::Dog( const Dog & src )
+Dog::Dog(const Dog &src) : Animal(src)
 {
+	std::cout << "Dog Copy Constructor called" << std::endl;
+	*this = src;
 }
-
-
-/*
-** -------------------------------- DESTRUCTOR --------------------------------
-*/
 
 Dog::~Dog()
 {
+	std::cout << "Dog Destructor called" << std::endl;
 }
 
-
-/*
-** --------------------------------- OVERLOAD ---------------------------------
-*/
-
-Dog &				Dog::operator=( Dog const & rhs )
+Dog &Dog::operator=(Dog const &src)
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	std::cout << "Dog Operator Assignment called" << std::endl;
+	if (this != &src)
+	{
+		this->type = src.getType();
+	}
 	return *this;
 }
 
-std::ostream &			operator<<( std::ostream & o, Dog const & i )
+void Dog::makeSound() const
 {
-	//o << "Value = " << i.getValue();
-	return o;
+	std::cout << "Haf Haf Haf" << std::endl;
 }
-
-
-/*
-** --------------------------------- METHODS ----------------------------------
-*/
-
-
-/*
-** --------------------------------- ACCESSOR ---------------------------------
-*/
-
-
-/* ************************************************************************** */
