@@ -7,6 +7,7 @@
 
 int main(void)
 {
+    //Animal a;
     Animal *a1 = new Cat();
     Animal *a2 = new Dog();
 

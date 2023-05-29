@@ -11,13 +11,14 @@ class WrongCat : public WrongAnimal
 	public:
 
 		WrongCat();
-		WrongCat(WrongCat const &src);
-		~WrongCat();
+		WrongCat( WrongCat const & src );
+		virtual ~WrongCat();
 
-		WrongCat &operator=(WrongCat const &src);
+		WrongCat &operator=(WrongCat const & src);
 
-		void 		makeSound() const;
+		void makeSound() const;
 		std::string getType() const;
+	private:
 
 };
 
