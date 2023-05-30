@@ -21,12 +21,12 @@ ScavTrap::ScavTrap(ScavTrap const &src) : ClapTrap()
 
 ScavTrap::~ScavTrap(void)
 {
-    std::cout << "ClapTrap Destructor called" << std::endl;
+    std::cout << "ScavTrap Destructor called" << std::endl;
 }
 
 ScavTrap &ScavTrap::operator=(ScavTrap const &obj)
 {
-    std::cout << "ClapTrap Copy assigment operator called" << std::endl;
+    std::cout << "ScavTrap Copy assigment operator called" << std::endl;
     _name = obj._name;
     _hitPoint = obj._hitPoint;
     _energyPoint = obj._energyPoint;
@@ -37,9 +37,9 @@ ScavTrap &ScavTrap::operator=(ScavTrap const &obj)
 void ScavTrap::attack(std::string const &target)
 {
     if (this->_hitPoint == 0)
-        std::cout << "ClapTrap " << this->getName() << " is dead." << std::endl;
+        std::cout << "ScavTrap " << this->getName() << " is dead." << std::endl;
     else if (this->_energyPoint == 0)
-        std::cout << "ClapTrap " << this->getName() << " is without energy to fight." << std::endl;
+        std::cout << "ScavTrap " << this->getName() << " is without energy to fight." << std::endl;
     std::cout << "ScavTrap " << this->getName() << " attacks " << target << ", causing " << this->getAttackDamage() << " points of damage!" << std::endl;
         this->_energyPoint--;
 }

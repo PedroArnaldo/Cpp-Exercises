@@ -1,9 +1,5 @@
 #include "FragTrap.hpp"
 
-/*
-** ------------------------------- CONSTRUCTOR --------------------------------
-*/
-
 FragTrap::FragTrap(void) : ClapTrap("Bot FragTrap", 100, 100, 30)
 {
    std::cout << "FragTrap Default constructor called" << std::endl;
@@ -23,20 +19,10 @@ FragTrap::FragTrap(const FragTrap &src) : ClapTrap()
     this->_attackDamage = src._attackDamage;
 }
 
-
-/*
-** -------------------------------- DESTRUCTOR --------------------------------
-*/
-
 FragTrap::~FragTrap()
 {
     std::cout << "FragTrap Destructor called" << std::endl;
 }
-
-
-/*
-** --------------------------------- OVERLOAD ---------------------------------
-*/
 
 FragTrap &FragTrap::operator=(FragTrap const & src)
 {
@@ -48,18 +34,7 @@ FragTrap &FragTrap::operator=(FragTrap const & src)
 	return *this;
 }
 
-/*
-** --------------------------------- METHODS ----------------------------------
-*/
-
 void FragTrap::highFivesGuys(void) const
 {
     std::cout << "FragTrap " + this->_name + " high five guys." << std::endl;
 }
-
-/*
-** --------------------------------- ACCESSOR ---------------------------------
-*/
-
-
-/* ************************************************************************** */
