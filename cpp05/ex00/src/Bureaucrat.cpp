@@ -1,4 +1,4 @@
-#include "../include/Bureaucrat.hpp"
+#include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat(std::string name, int grade) :
 	_name(name),
@@ -14,11 +14,11 @@ Bureaucrat::Bureaucrat(std::string name, int grade) :
 	}
 	catch(const Bureaucrat::GradeTooLowException& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what();
 	}
 	catch(const Bureaucrat::GradeTooHighException& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what();
 	}
 	std::cout << "Bureaucrat " << this->getName() << " is born." << std::endl;
 }
@@ -67,11 +67,11 @@ void Bureaucrat::setGrade(int grade)
 	}
 	catch(const Bureaucrat::GradeTooLowException& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what();
 	}
 	catch(const Bureaucrat::GradeTooHighException& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what();
 	}
 }
 
@@ -86,7 +86,7 @@ void Bureaucrat::incrementGrade(int value)
 	}
 	catch(const Bureaucrat::GradeTooHighException& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what();
 	}
 }
 
@@ -101,19 +101,7 @@ void Bureaucrat::decrementGrade(int value)
 	}
 	catch(const Bureaucrat::GradeTooLowException& e)
 	{
-		std::cerr << e.what() << '\n';
-	}
-}
-
-void Bureaucrat::signForm(Form &form)
-{
-	if (form.getSign())
-	{
-		std::cout << this->getName() << " signed " << std::endl;
-	}
-	else
-	{
-		std::cout << this->getName() << " couldn't sign" << std::endl;
+		std::cerr << e.what();
 	}
 }
 

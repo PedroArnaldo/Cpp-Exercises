@@ -1,4 +1,4 @@
-#include "../include/Form.hpp"
+#include "Form.hpp"
 
 Form::Form(std::string name, int gradeSign, int gradeExecute) : 
 	_name(name),
