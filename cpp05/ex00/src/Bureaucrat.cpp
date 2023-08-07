@@ -1,5 +1,12 @@
 #include "Bureaucrat.hpp"
 
+Bureaucrat::Bureaucrat() :
+	_name("default"),
+	_grade(0)
+{
+	std::cout << "Bureaucrat " << this->getName() << " is born." << std::endl;
+}
+
 Bureaucrat::Bureaucrat(std::string name, int grade) :
 	_name(name),
 	_grade(grade)
