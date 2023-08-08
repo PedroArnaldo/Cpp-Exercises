@@ -1,16 +1,16 @@
 #include "Form.hpp"
 
-Form::Form(std::string name, int gradeSign, int gradeExecute) : 
-	_name(name),
+Form::Form() :
+	_name("Dafault"),
 	_sign(false),
-	_gradeSign(gradeSign),
-	_gradeExecute(gradeExecute)
+	_gradeSign(100),
+	_gradeExecute(0)
 {
 	try
 	{
-		if (gradeSign < 1 || gradeExecute < 1)
+		if (this->_gradeSign < 1)
 			throw Form::GradeTooLowException();
-		if (gradeSign > 150 || gradeExecute > 150)
+		if (this->_gradeSign > 150)
 			throw Form::GradeTooHighException();
 	}
 	catch (const Form::GradeTooLowException& e)
@@ -21,7 +21,29 @@ Form::Form(std::string name, int gradeSign, int gradeExecute) :
 	{
 		std::cerr << e.what() << '\n'; 
 	}
+}
 
+Form::Form(std::string name, int gradeSign, int gradeExecute) : 
+	_name(name),
+	_sign(false),
+	_gradeSign(gradeSign),
+	_gradeExecute(gradeExecute)
+{
+	try
+	{
+		if (gradeSign < 1)
+			throw Form::GradeTooLowException();
+		if (gradeSign > 150)
+			throw Form::GradeTooHighException();
+	}
+	catch (const Form::GradeTooLowException& e)
+	{
+		std::cerr << e.what() << '\n'; 
+	}
+	catch (const Form::GradeTooHighException& e)
+	{
+		std::cerr << e.what() << '\n'; 
+	}
 }
 
 Form::Form(const Form& src) :
@@ -71,22 +93,25 @@ void Form::beSigned(Bureaucrat const &bureaucrat)
 {
 	try
 	{
-		if (bureaucrat.getGrade() >= this->getGradeSign() && bureaucrat.getGrade() > this->getGradeExecute())
+		if (bureaucrat.getGrade() >= this->getGradeSign())
 			this->_sign = true;
+		else
+			throw Form::GradeTooLowException();
 	}
 	catch (const Form::GradeTooLowException& e)
 	{
-		std::cerr << e.what() << '\n'; 
+		std::cerr << e.what(); 
 	}
 	catch (const Form::GradeTooHighException& e)
 	{
-		std::cerr << e.what() << '\n'; 
+		std::cerr << e.what(); 
 	}
 }
 
 std::ostream& operator<<( std::ostream & o, Form const & i )
 {
-	o << "Form = " << i.getName() << std::endl;
+	o << "Form = " << i.getName() << ", is signature: " << i.getSign() << 
+	", " << " grade signature:  " << i.getGradeSign() << ", " << " grade execute: " << 
+	i.getGradeExecute() << std::endl;
 	return o;
 }
-
