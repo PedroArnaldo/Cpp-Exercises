@@ -2,6 +2,7 @@
 # define SHRUBBERYCREATIONFORM_HPP
 
 # include <iostream>
+# include <fstream>
 # include <string>
 # include "AForm.hpp"
 
@@ -16,11 +17,19 @@ class ShrubberyCreationForm : public AForm
 		~ShrubberyCreationForm();
 
 		ShrubberyCreationForm &operator=(ShrubberyCreationForm const &rhs);
+		
+		void executeForm() const;
+	
+		class OpenFile : public std::exception {
+			public:
+				const char* what() const throw(){
+					return ("Error open file.\n");
+				}
+		} 
 
 	private:
+		std::string _target;
 
 };
-
-std::ostream &operator<<(std::ostream &o, ShrubberyCreationForm const &i);
 
 #endif

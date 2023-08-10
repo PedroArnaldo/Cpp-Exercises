@@ -1,36 +1,55 @@
 #include "ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm() :
-	Form("Anonymous_shrubbery", 124, 137),
+	AForm("Shrubbery", 145, 137),
 {
-	std::cout << "Shrubbery " << this->getName() << " is born." << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) :
-	Form(target + "_shrubbery", 124, 137)
+	AForm("Shrubbery", 145, 137)
 {
-	
+	this->_target = target;	
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm & src )
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) :
+	AForm(src)
 {
+	this->_target = src._target;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 }
 
-ShrubberyCreationForm &				ShrubberyCreationForm::operator=( ShrubberyCreationForm const & rhs )
+ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm const &rhs)
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if ( this != &rhs )
+	{
+		this->~AForm::operator=(rhs);
+		this->_target = rhs._target;
+	}
 	return *this;
 }
 
-std::ostream &			operator<<( std::ostream & o, ShrubberyCreationForm const & i )
+ShrubberyCreationForm::executeForm()
 {
-	//o << "Value = " << i.getValue();
-	return o;
+	std:ofstream file(this->_target + "_shrubbery");
+
+	if (file.is_open())
+	{
+		file << "      /\\\n";
+        file << "     //\\\\\n";
+        file << "   ////\\\\\\\\\n";
+        file << "  /////\\\\\\\\\\\n";
+        file << " //////\\\\\\\\\\\\\\\n";
+        file << "    ///\\\\\\\n";
+    	file << "      ||||\n";
+        file << "      ||||\n";
+        file << "      ||||\n";
+        file << std::endl;
+
+        file.close();
+	} 
+	else 
+		throw ShrubberyCreationForm::OpenFile();
 }
