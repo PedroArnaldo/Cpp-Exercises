@@ -13,9 +13,9 @@ class AForm
 	public:
 		AForm();
 		AForm(std::string name, int gradeSign, int gradeExecute);
-		AForm(Form const& src);
+		AForm(AForm const& src);
 		~AForm();
-		AForm& operator=(Form const& rhs);
+		AForm& operator=(AForm const& rhs);
 	
 		std::string getName() const;
 		bool getSign() const;
@@ -48,6 +48,6 @@ class AForm
 
 };
 
-std::ostream &operator<<(std::ostream &o, Form const &i);
+std::ostream &operator<<(std::ostream &o, AForm const &i);
 
 #endif

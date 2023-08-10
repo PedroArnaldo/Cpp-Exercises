@@ -17,15 +17,15 @@ class ShrubberyCreationForm : public AForm
 		~ShrubberyCreationForm();
 
 		ShrubberyCreationForm &operator=(ShrubberyCreationForm const &rhs);
-		
-		void executeForm() const;
+
+		void executeForm(Bureaucrat const& executor) const;
 	
 		class OpenFile : public std::exception {
 			public:
 				const char* what() const throw(){
 					return ("Error open file.\n");
 				}
-		} 
+		};
 
 	private:
 		std::string _target;

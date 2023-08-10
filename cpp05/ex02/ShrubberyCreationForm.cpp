@@ -1,8 +1,9 @@
 #include "ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm() :
-	AForm("Shrubbery", 145, 137),
+	AForm("Shrubbery", 145, 137)
 {
+	this->_target = "void";
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) :
@@ -25,15 +26,17 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm co
 {
 	if ( this != &rhs )
 	{
-		this->~AForm::operator=(rhs);
+		this->AForm::operator=(rhs);
 		this->_target = rhs._target;
 	}
 	return *this;
 }
 
-ShrubberyCreationForm::executeForm()
+void ShrubberyCreationForm::executeForm(Bureaucrat const& executor) const
 {
-	std:ofstream file(this->_target + "_shrubbery");
+	(void) executor;
+	std::string nameFile = this->_target + "_shrubbery";
+	std::ofstream file(nameFile.c_str());
 
 	if (file.is_open())
 	{

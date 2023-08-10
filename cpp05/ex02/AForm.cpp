@@ -1,4 +1,4 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 
 AForm::AForm() :
 	_name("Dafault"),
@@ -9,15 +9,15 @@ AForm::AForm() :
 	try
 	{
 		if (this->_gradeSign < 1)
-			throw Form::GradeTooLowException();
+			throw AForm::GradeTooLowException();
 		if (this->_gradeSign > 150)
-			throw Form::GradeTooHighException();
+			throw AForm::GradeTooHighException();
 	}
-	catch (const Form::GradeTooLowException& e)
+	catch (const AForm::GradeTooLowException& e)
 	{
 		std::cerr << e.what() << '\n'; 
 	}
-	catch (const Form::GradeTooHighException& e)
+	catch (const AForm::GradeTooHighException& e)
 	{
 		std::cerr << e.what() << '\n'; 
 	}
@@ -32,21 +32,21 @@ AForm::AForm(std::string name, int gradeSign, int gradeExecute) :
 	try
 	{
 		if (gradeSign < 1)
-			throw Form::GradeTooLowException();
+			throw AForm::GradeTooLowException();
 		if (gradeSign > 150)
-			throw Form::GradeTooHighException();
+			throw AForm::GradeTooHighException();
 	}
-	catch (const Form::GradeTooLowException& e)
+	catch (const AForm::GradeTooLowException& e)
 	{
 		std::cerr << e.what() << '\n'; 
 	}
-	catch (const Form::GradeTooHighException& e)
+	catch (const AForm::GradeTooHighException& e)
 	{
 		std::cerr << e.what() << '\n'; 
 	}
 }
 
-AForm::AForm(const Form& src) :
+AForm::AForm(const AForm& src) :
 	_name(src.getName()),
 	_sign(src.getSign()),
 	_gradeSign(src.getGradeSign()),
@@ -96,7 +96,7 @@ void AForm::beSigned(Bureaucrat const &bureaucrat)
 		if (bureaucrat.getGrade() >= this->getGradeSign())
 			this->_sign = true;
 		else
-			throw Form::GradeTooLowException();
+			throw AForm::GradeTooLowException();
 	}
 	catch (const AForm::GradeTooLowException& e)
 	{
@@ -108,12 +108,12 @@ void AForm::beSigned(Bureaucrat const &bureaucrat)
 	}
 }
 
-void AForm::execute(Bureaucrat const& executor)
+void AForm::execute(Bureaucrat const& executor) const
 {
 	if(executor.getGrade() > this->_gradeExecute)
 		throw (GradeTooLowException());
 	else
-		executeForm();
+		executeForm(executor);
 }
 
 std::ostream& operator<<( std::ostream & o, AForm const & i )
