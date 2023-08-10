@@ -10,15 +10,15 @@ class RobotomyRequestForm
 	public:
 
 		RobotomyRequestForm();
-		RobotomyRequestForm( RobotomyRequestForm const & src );
+		RobotomyRequestForm(RobotomyRequestForm const &src);
 		~RobotomyRequestForm();
 
-		RobotomyRequestForm &		operator=( RobotomyRequestForm const & rhs );
+		RobotomyRequestForm &		operator=(RobotomyRequestForm const &rhs);
 
 	private:
 
 };
 
-std::ostream &			operator<<( std::ostream & o, RobotomyRequestForm const & i );
+std::ostream &			operator<<(std::ostream & o, RobotomyRequestForm const &i);
 
-#endif /* ********************************************* ROBOTOMYREQUESTFORM_H */
+#endif

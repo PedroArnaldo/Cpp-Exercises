@@ -1,30 +1,24 @@
 #include "ShrubberyCreationForm.hpp"
 
-/*
-** ------------------------------- CONSTRUCTOR --------------------------------
-*/
-
-ShrubberyCreationForm::ShrubberyCreationForm()
+ShrubberyCreationForm::ShrubberyCreationForm() :
+	Form("Anonymous_shrubbery", 124, 137),
 {
+	std::cout << "Shrubbery " << this->getName() << " is born." << std::endl;
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) :
+	Form(target + "_shrubbery", 124, 137)
+{
+	
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm & src )
 {
 }
 
-
-/*
-** -------------------------------- DESTRUCTOR --------------------------------
-*/
-
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 }
-
-
-/*
-** --------------------------------- OVERLOAD ---------------------------------
-*/
 
 ShrubberyCreationForm &				ShrubberyCreationForm::operator=( ShrubberyCreationForm const & rhs )
 {
@@ -40,16 +34,3 @@ std::ostream &			operator<<( std::ostream & o, ShrubberyCreationForm const & i )
 	//o << "Value = " << i.getValue();
 	return o;
 }
-
-
-/*
-** --------------------------------- METHODS ----------------------------------
-*/
-
-
-/*
-** --------------------------------- ACCESSOR ---------------------------------
-*/
-
-
-/* ************************************************************************** */
