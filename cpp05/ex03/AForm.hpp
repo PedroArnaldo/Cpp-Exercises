@@ -40,6 +40,13 @@ class AForm
 				}
 		};
 
+		class ErrorNotExits : public std::exception {
+			public:
+				const char* what()  const throw(){
+					return ("Form: invalid name, it's name not exits.\n");
+				}
+		};
+
 	private:
 		const std::string _name;
 		bool  _sign;
