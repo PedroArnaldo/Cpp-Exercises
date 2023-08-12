@@ -1,4 +1,4 @@
-NAME = work01
+NAME = work03
 
 CXX = c++
 
@@ -9,7 +9,8 @@ SOURCE =	./main.cpp \
 			./AForm.cpp	\
 			./ShrubberyCreationForm.cpp \
 			./RobotomyRequestForm.cpp \
-			./PresidentialPardonForm.cpp
+			./PresidentialPardonForm.cpp \
+			./Intern.cpp
 
 $(NAME):	$(SOURCE)
 			$(CXX) $(CXXFLAGS) $(SOURCE) -o $(NAME)

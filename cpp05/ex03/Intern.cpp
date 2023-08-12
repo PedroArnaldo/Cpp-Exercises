@@ -34,10 +34,20 @@ static AForm *makePresidentialPardonForm(std::string target)
 	return (new PresidentialPardonForm(target));
 }
 
+static std::string toLower(std::string str)
+{
+	std::string result = str;
+	for (size_t i = 0; i < result.length(); i++)
+	{
+		result[i] = std::tolower(result[i]);
+	}
+	return result;
+}
+
 AForm *Intern::makeForm(std::string form, std::string target)
 {
 	///mexer ou não na criação do form
-	std::transform(form.begin(), form.end(), form.begin(), ::tolower);
+	std::string name = toLower(form);
 
 	std::string forms[3] = {
 		"shrubbery",
@@ -53,10 +63,10 @@ AForm *Intern::makeForm(std::string form, std::string target)
 
 	for (size_t i = 0; i < 3; i++)
 	{
-		if (forms[i] == form)
+		if (forms[i] == name)
 		{
 			std::cout << "Intern creates " << form << std::endl;
-			return (funcs[i](form));
+			return (funcs[i](target));
 		}
 	}
 	

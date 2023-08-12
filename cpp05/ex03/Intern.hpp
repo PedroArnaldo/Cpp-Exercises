@@ -3,13 +3,12 @@
 
 # include <iostream>
 # include <string>
-# include "AForm.hpp"
 # include <algorithm>
 # include "ShrubberyCreationForm.hpp"
 # include "RobotomyRequestForm.hpp"
 # include "PresidentialPardonForm.hpp"
 
-class Intern : public AForm
+class Intern
 {
 
 	public:

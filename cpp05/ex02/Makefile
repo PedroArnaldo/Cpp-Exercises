@@ -1,4 +1,4 @@
-NAME = work01
+NAME = work02
 
 CXX = c++
 
