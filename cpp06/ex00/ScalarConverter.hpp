@@ -22,6 +22,7 @@ class ScalarConverter{
 		bool static isInt(const std::string &value);
 		bool static isFloat(const std::string &value);
 		bool static isDouble(const std::string &value);
+		bool static isNum(const std::string &value);
 	
 	public:
 		ScalarConverter(void);

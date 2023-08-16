@@ -1,9 +1,9 @@
 #include "ScalarConverter.hpp"
 
-int main(void)
+int main(int argc, char **argv)
 {
-	std::string str = "2147483648.3412f";
-	std::string str1 = "asdf";
-	ScalarConverter::convert(str1);
+	if (argc == 2)
+		ScalarConverter::convert(argv[1]);
+	std::cout << std::atof("A");
 	return (0);
 }

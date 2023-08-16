@@ -58,10 +58,21 @@ bool ScalarConverter::isDouble(const std::string &value){
 	return true;
 }
 
+bool ScalarConverter::isNum(const std::string &value){
+
+	if(isInt(value) && isFloat(value) && isDouble(value))
+		return true;
+	return false;
+}
+
 void ScalarConverter::toChar(const std::string &value){
-
-	int nbr = std::atof(value.c_str());
-
+	
+	int nbr;
+	if (value.length() == 1)
+		nbr = static_cast<int>(value[0]);
+	else
+		nbr = std::atof(value.c_str());
+	
 	if (!isprint(nbr))
 		std::cout << "char: Non displayable" << std::endl;
 	else
@@ -73,7 +84,7 @@ void ScalarConverter::toInt(const std::string &value){
 	double nbr = std::atof(value.c_str());
 
 	if (nbr < INT_MIN || nbr > INT_MAX)
-		std::cout << "int: overflow" << std::endl;
+		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(nbr) << std::endl;
 }
@@ -84,7 +95,7 @@ void ScalarConverter::toFloat(const std::string &value){
 
 	double max = std::numeric_limits<float>::max();
 	if (nbr < -max || nbr > max)
-		std::cout << "float: overflow" << std::endl;
+		std::cout << "float: impossible" << std::endl;
 	else
 		std::cout << "float: " << std::setprecision(1) << std::fixed << static_cast<float>(nbr) << "f" << std::endl;
 }
@@ -98,15 +109,16 @@ void ScalarConverter::toDouble(const std::string &value){
 
 void ScalarConverter::convert(const std::string &literal){
 
+	//created if for 'a' input
 	if (isChar(literal))
 		toChar(literal);
 	else
-		std::cout << "char: overflow\n";
-	if (isInt(literal))
+		std::cout << "char: impossible\n";
+	if (isNum(literal))
+	{
 		toInt(literal);
-	if (isFloat(literal))
 		toFloat(literal);
-	if (isDouble(literal))
 		toDouble(literal);
+	}
 }
 
