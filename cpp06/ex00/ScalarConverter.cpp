@@ -1,21 +1,18 @@
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter(){
-}
-
-ScalarConverter::~ScalarConverter(){
-}
-
-bool ScalarConverter::isSpecialValues(const std::string &value){
+bool ScalarConverter::isExtremeValues(const std::string &value){
 	
-	std::string specialValues[6] = {
+	std::string specialValues[8] = {
 		"-inf",
 		"+inf",
+		"inf",
+		"inff",
 		"nan",
 		"nanf",
 		"-inff",
 		"+inff"
 	};
+
 	for (size_t i = 0; i < specialValues->length(); i++)
 	{
 		if(specialValues[i] == value)
@@ -24,31 +21,15 @@ bool ScalarConverter::isSpecialValues(const std::string &value){
 	return false;
 }
 
-bool ScalarConverter::isChar(const std::string &value){
+bool ScalarConverter::isValid(const std::string &value){
 
-	double nbr = std::atof(value.c_str());
-
-	//verificar se o tamanho é igual a um ou se for uma string se tem somente números
-
-	if (nbr < CHAR_MIN || nbr > CHAR_MAX)
-		return false;
-	else
+	if (!(value.length() > 1 && std::atof(value.c_str()) == 0))
 		return true;
+
+	return false;
 }
 
-bool ScalarConverter::isInt(const std::string &value){
-	
-	for (size_t i = 0; i < value.length(); i++)
-	{
-		if (value[i] == '-' && i == 1)
-			continue;
-		if (!isdigit(value[i]))
-			return false;
-	}
-	return true;
-}
-
-bool ScalarConverter::isFloat(const std::string &value){
+bool ScalarConverter::isNum(const std::string &value){
 
 	for (size_t i = 0; i < value.length(); i++)
 	{
@@ -64,103 +45,69 @@ bool ScalarConverter::isFloat(const std::string &value){
 	return true;
 }
 
-bool ScalarConverter::isDouble(const std::string &value){
+void ScalarConverter::toChar(double value){
 
-	for (size_t i = 0; i < value.length(); i++)
-	{
-		if (i == 1 && value[i] == '-')
-			continue;
-		if (value[i] == '.')
-			continue;
-		if (!isdigit(value[i]))
-			return false;
-	}
-	return true;
-}
 
-bool ScalarConverter::isNum(const std::string &value){
-
-	if(value.length() == 1 && !isdigit(value[0]))
-	{
-		std::cout << "int: " << static_cast<int>(value[0]) << std::endl;
-		std::cout << "float: " << std::setprecision(1) << std::fixed << static_cast<float>(value[0]) << "f" << std::endl;
-		std::cout << "double: " << std::setprecision(2) << std::fixed << static_cast<double>(value[0]) << std::endl;	
-		return false;
-	}
-
-	if(isInt(value) && isFloat(value) && isDouble(value))
-		return true;
-	return false;
-}
-
-void ScalarConverter::toChar(const std::string &value){
-
-	int nbr = std::atof(value.c_str());
-
-	std::cout << "nbr " << nbr << std::endl;
-
-	if (value.length() == 1 && !isdigit(value[0]))
-		std::cout << "char: '" << static_cast<char>(value[0]) << "'" << std::endl;
-	else if (isprint(value[0]) && value.length() == 1)
+	if (value < CHAR_MIN || value > CHAR_MAX)
+		std::cout << "char: impossible" << std::endl;
+	else if (!isprint(value))
 		std::cout << "char: Non displayable" << std::endl;
 	else
-		std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
+		std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
 }
 
-void ScalarConverter::toInt(const std::string &value){
-	
-	double nbr = std::atof(value.c_str());
+void ScalarConverter::toInt(double value){
 
-	if (nbr < INT_MIN || nbr > INT_MAX)
+	if (value < INT_MIN || value > INT_MAX)
 		std::cout << "int: impossible" << std::endl;
 	else
-		std::cout << "int: " << static_cast<int>(nbr) << std::endl;
+		std::cout << "int: " << static_cast<int>(value) << std::endl;
 }
 
-void ScalarConverter::toFloat(const std::string &value){
-	
-	double nbr = std::atof(value.c_str());
+void ScalarConverter::toFloat(double value){
 
 	double max = std::numeric_limits<float>::max();
-	if (nbr < -max || nbr > max)
+
+	if (value < -max || value > max)
 		std::cout << "float: impossible" << std::endl;
 	else
-		std::cout << "float: " << std::setprecision(1) << std::fixed << static_cast<float>(nbr) << "f" << std::endl;
+		std::cout << "float: " << std::setprecision(1) << std::fixed << static_cast<float>(value) << "f" << std::endl;
 }
 
-void ScalarConverter::toDouble(const std::string &value){
-	
-	double nbr = std::atof(value.c_str());
-
-	std::cout << "double: " << std::setprecision(2) << std::fixed << static_cast<double>(nbr) << std::endl;
+void ScalarConverter::toDouble(double value){
+	std::cout << "double: " << std::setprecision(1) << std::fixed << static_cast<double>(value) << std::endl;
 }
 
-void ScalarConverter::toSpecialValues(const std::string &value){
-	
-	double nbr = std::atof(value.c_str());
+void ScalarConverter::printString(const std::string &value){
 
+	double nbr = 0;
+
+	if (value.length() == 1 && !std::isdigit(value[0]))
+		nbr = static_cast<int>(value[0]);
+	else
+		nbr = std::atof(value.c_str());
+	
+	toChar(nbr);
+	toInt(nbr);
+	toFloat(nbr);
+	toDouble(nbr);
+}
+
+void ScalarConverter::printExtremeValues(void){
+	
 	std::cout << "char: impossible" << std::endl;
 	std::cout << "int: impossible" << std::endl;
-	std::cout << "float: " << std::setprecision(1) << std::fixed << static_cast<float>(nbr) << "f" << std::endl;
-	std::cout << "double: " << std::setprecision(2) << std::fixed << static_cast<double>(nbr) << std::endl;
+	std::cout << "flaot: nanf" << std::endl;
+	std::cout << "double: nan" << std::endl;
 }
 
 void ScalarConverter::convert(const std::string &literal){
 
-	//created if for 'a' input
-	if(isSpecialValues(literal))
-		toSpecialValues(literal);
-	else{
-		if (isChar(literal))
-			toChar(literal);
-		else
-			std::cout << "char: impossible\n";
-		if (isNum(literal))
-		{
-			toInt(literal);
-			toFloat(literal);
-			toDouble(literal);
-		}
-	}
+	if (isExtremeValues(literal))
+		printExtremeValues();
+	else if ((isValid(literal) && isNum(literal)) || literal.length() == 1)
+		printString(literal);
+	else
+		std::cout << "warning: value error." << std::endl;
 }
 

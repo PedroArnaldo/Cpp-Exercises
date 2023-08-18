@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <iomanip>
 #include <cctype>
+#define IMPOSSIBLE  2147483648
 
 class ScalarConverter{
 
@@ -18,20 +19,17 @@ class ScalarConverter{
 		ScalarConverter(ScalarConverter const &src);
 		ScalarConverter& operator=(ScalarConverter const &src);
 
-		void	static toChar(const std::string &value);
-		void	static toInt(const std::string &value);
-		void	static toFloat(const std::string &value);
-		void	static toDouble(const std::string &value);
-		void	static toSpecialValues(const std::string &value);
+		void	static toChar(double value);
+		void	static toInt(double value);
+		void	static toFloat(double value);
+		void	static toDouble(double value);
+		void	static printString(const std::string &value);
+		void	static printExtremeValues(void);
 
-		bool	static isChar(const std::string &value);
-		bool	static isInt(const std::string &value);
-		bool	static isFloat(const std::string &value);
-		bool	static isDouble(const std::string &value);
 		bool	static isNum(const std::string &value);
-		bool	static isSpecialValues(const std::string &value);
+		bool	static isValid(const std::string &value);
+		bool	static isExtremeValues(const std::string &value);
 
-	
 	public:
 		void	static convert(const std::string &literal);
 };
