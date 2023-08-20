@@ -9,7 +9,6 @@
 #include <cstdlib>
 #include <iomanip>
 #include <cctype>
-#define IMPOSSIBLE  2147483648
 
 class ScalarConverter{
 
