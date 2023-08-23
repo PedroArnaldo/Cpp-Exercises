@@ -48,12 +48,28 @@ void ClassGenerate::identify(Base *p){
 
 void ClassGenerate::identify(Base &p){
 	
-	if (dynamic_cast<A*>(&p) != NULL)
-		message("Class A");
-	else if(dynamic_cast<B*>(&p) != NULL)
-		message("Class B");
-	else if(dynamic_cast<C*>(&p) != NULL)
-		message("Class C");
-	else
-		std::cout << RED << "Error cast" << END << std::endl;
+	try{
+		if (dynamic_cast<A*>(&p) != NULL)
+			message("Class A");
+		else
+			throw (std::runtime_error("casting base to class A."));
+	}catch (const std::exception &e){
+		std::cerr << RED << "Error cast " << e.what() << std::endl;
+	}
+	try{
+		if (dynamic_cast<B*>(&p) != NULL)
+			message("Class B");
+		else
+			throw (std::runtime_error("casting base to class B."));
+	}catch (const std::exception &e){
+		std::cerr << RED << "Error cast " << e.what() << std::endl;
+	}
+	try{
+		if (dynamic_cast<C*>(&p) != NULL)
+			message("Class C");
+		else
+			throw (std::runtime_error("casting base to class C."));
+	}catch (const std::exception &e){
+		std::cerr << RED << "Error cast " << e.what() << std::endl;
+	}
 }

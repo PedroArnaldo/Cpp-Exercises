@@ -13,7 +13,7 @@ int main(void)
 	std::cout << "Identify ptr: ";
 	cg.identify(base);
 
-	std::cout << "Identify ref: ";
+	std::cout << "Identify ref: " << std::endl;
 	cg.identify(*base);
 
 	delete base;	
