@@ -80,7 +80,7 @@ void PhoneBook::searchContact(void)
 		std::cout << "|";
 		std::cout << std::right << std::setw(10) << truncate(_contacts[i].getLastName());
 		std::cout << "|";
-		std::cout << std::right << std::setw(10) << truncate(_contacts[i].getLastName()) << std::endl;
+		std::cout << std::right << std::setw(10) << truncate(_contacts[i].getNickName()) << std::endl;
 		i++;
 	}
 	try

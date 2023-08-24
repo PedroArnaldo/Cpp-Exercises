@@ -13,7 +13,7 @@ bool ScalarConverter::isExtremeValues(const std::string &value){
 		"+inff"
 	};
 
-	for (size_t i = 0; i < specialValues->length(); i++)
+	for (size_t i = 0; i < 8; i++)
 	{
 		if(specialValues[i] == value)
 			return true;
@@ -25,18 +25,21 @@ bool ScalarConverter::isValid(const std::string &value){
 
 	if (!(value.length() > 1 && std::atof(value.c_str()) == 0))
 		return true;
-
 	return false;
 }
 
 bool ScalarConverter::isNum(const std::string &value){
 
+	int qtDot = 0;
+
 	for (size_t i = 0; i < value.length(); i++)
 	{
-		if (i == 1 && value[i] == '-')
+		if (i == 0 && value[i] == '-')
 			continue;
-		if (value[i] == '.')
+		if (value[i] == '.' && qtDot == 0){
+			qtDot++;
 			continue;
+		}
 		if (value[value.length()-1] == 'f')
 			continue;
 		if (!isdigit(value[i]))
@@ -97,7 +100,7 @@ void ScalarConverter::printExtremeValues(void){
 	
 	std::cout << "char: impossible" << std::endl;
 	std::cout << "int: impossible" << std::endl;
-	std::cout << "flaot: nanf" << std::endl;
+	std::cout << "float: nanf" << std::endl;
 	std::cout << "double: nan" << std::endl;
 }
 
