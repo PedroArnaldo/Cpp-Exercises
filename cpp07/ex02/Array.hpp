@@ -1,6 +1,7 @@
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
 
+#include <iostream>
 #include <stdexcept>
 #include <string>
 
@@ -16,7 +17,7 @@ template <typename T> class Array {
 		virtual ~Array<T>(void);
 
 		Array<T>& operator=(const Array<T> &src);
-		Array<T>& operator[](size_t index) const;
+		T& operator[](size_t index) const;
 		size_t size(void) const;
 
 	class OutOfRangeException : public std::exception {

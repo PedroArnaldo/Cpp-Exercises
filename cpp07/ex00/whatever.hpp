@@ -1,7 +1,7 @@
 #ifndef WHATEVER_HPP
 #define WHATEVER_HPP
 
-#include <string>
+#include <string> // nao sei se esses includes sao necessarios nesse arquivo
 #include <iostream>
 
 template <typename T>
@@ -16,8 +16,8 @@ void swap(T &a, T &b){
 template <typename T>
 T min(T a, T b){
 	
-	if (a > b)
-		return b;
+	if (a > b) // caso eles sejam iguais tem que retornar o segundo argumento
+		return b; 
 	else
 		return a;
 }

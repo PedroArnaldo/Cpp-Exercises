@@ -44,17 +44,17 @@ Array<T>& Array<T>::operator=(const Array<T> &src)
         this->_elements = new T[src.size()];
         for (size_t i = 0; i < src.size(); i++)
         {
-            this->_elements[i] = src.elemnts[i];
+            this->_elements[i] = src._elements[i];
         }
         
     }
 }
 
 template <typename T>
-Array<T>& Array<T>::operator[](size_t index) const
+T& Array<T>::operator[](size_t index) const
 {
-    if (index > 0 && index < this->size()) 
-        return this->_elemets[index];
+    if (index >= 0 && index < this->size()) 
+        return this->_elements[index];
     else
         throw Array::OutOfRangeException();
 }
