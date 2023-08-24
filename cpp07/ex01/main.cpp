@@ -1,11 +1,11 @@
 #include "iter.hpp"
 #include <iostream>
 
-void print(/*const*/int value){
+void print(const int value){
 	std::cout << value << std::endl;
 }
 
-void printStr(/*const*/std::string value){
+void printStr(std::string value){
 	std::cout << value << std::endl;
 }
 
