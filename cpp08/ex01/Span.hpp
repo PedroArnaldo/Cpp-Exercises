@@ -4,11 +4,14 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <stdexcept>
+#include <cstdlib>
+#include <ctime>
 
 class Span
 {
     private:
-        std::vector<unsigned int> _elements;
+        std::vector<int> _elements;
         unsigned int _size;
 
     public:
@@ -20,10 +23,20 @@ class Span
         Span& operator=(const Span& src);
 
         unsigned int getSize(void);
-        void addNumber(unsigned int element);
-        void addManyNumbers(void);
-        unsigned int shortestSpan(void);
-        unsigned int longestSpan(void);
+        void addNumber(const int element);
+        void addManyNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+        int shortestSpan(void);
+        int longestSpan(void);
+
+    class IndexOfRange : public std::exception {
+        public:
+            const char *what() const throw();
+    };
+
+    class insufficientElement : public std::exception {
+        public:
+            const char *what() const throw();
+    };
 };
 
 #endif

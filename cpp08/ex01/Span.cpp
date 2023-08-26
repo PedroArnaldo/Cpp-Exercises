@@ -45,24 +45,38 @@ Span& Span::operator=(const Span& src){
     return *this;
 }
 
+const char* Span::IndexOfRange::what() const throw(){
+    return "Index of Range";
+}
+
+const char* Span::insufficientElement::what() const throw(){
+    return "Insufficient Element";
+}
+
 unsigned int Span::getSize(void)
 {
     return this->_size;
 }
 
-void Span::addNumber(unsigned int element)
+void Span::addNumber(const int element)
 {
-    //fazer verificação
+    if (this->_elements.size() >= this->getSize())
+        throw Span::IndexOfRange();
     this->_elements.push_back(element);
 }
 
-void AddManyNumbers(void)
+void Span::addManyNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end)
 {
-    //fazer o código para adicionar mais de um milhao de números.
+    if (this->_elements.size() >= this->getSize())
+        throw Span::IndexOfRange();
+    this->_elements.insert(this->_elements.end(), begin, end);
 }
 
-unsigned int Span::shortestSpan(void)
+int Span::shortestSpan(void)
 {
+    if (this->_elements.size() <= 1 || this->_elements.empty())
+        throw Span::insufficientElement();
+
     unsigned int shortDistance = this->_elements[1] - this->_elements[0];
 
     std::sort(this->_elements.begin(), this->_elements.end());
@@ -77,9 +91,15 @@ unsigned int Span::shortestSpan(void)
     return shortDistance;
 }
 
-unsigned int Span::longestSpan(void)
+int Span::longestSpan(void)
 {
+    if (this->_elements.size() <= 1 || this->_elements.empty())
+        throw Span::insufficientElement();
+
     unsigned int largestDistance = this->_elements[this->_elements.size() - 1] - this->_elements[0];
+
+    std::sort(this->_elements.begin(), this->_elements.end());
+
     for (size_t i = 0; i < this->_elements.size() - 1; i++)
     {
         unsigned int distance = this->_elements[i + 1] - this->_elements[i];

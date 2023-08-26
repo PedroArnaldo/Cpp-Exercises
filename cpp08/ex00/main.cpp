@@ -93,5 +93,23 @@ int main(void)
     {
         std::cerr << e.what() << '\n';
     }
+
+    try
+    {
+        std::cout << "\nTest Container Vector with array parameter" << std::endl;
+
+        int array[] = {1, 2, 3, 4, 5};
+
+        std::vector<int>    vec(array, array + sizeof(array) / sizeof(int));
+
+        std::cout << "Result: ";
+        std::vector<int>::const_iterator ret1 = easyfind(vec, 1);
+
+        std::cout << *ret1 << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
     return (0);
 }
