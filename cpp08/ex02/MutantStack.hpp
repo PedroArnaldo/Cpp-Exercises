@@ -15,8 +15,7 @@ class MutantStack : public std::stack<T, std::deque<T> >
 
         }
 
-        MutantStack(const MutantStack &cpy){
-            this = cpy;
+        MutantStack(const MutantStack &cpy) : std::stack<T, std::deque<T> >(cpy){
         }
 
         ~MutantStack(){
@@ -24,7 +23,10 @@ class MutantStack : public std::stack<T, std::deque<T> >
         }
 
         MutantStack<T>& operator=(const MutantStack &src){
-            (void) src;
+            if (this != &src){
+                this->c = std::stack<T, std::deque<T> >::container_type();
+                this->c = src.c;
+            }
             return *this;
         }
 
