@@ -1,21 +1,25 @@
 #ifndef RPN_HPP
 #define RPN_HPP
 
-#include <stack>
+#include <iostream>
 
-class RPN{
+class RPN {
 
 	private:
-
+		std::string _operation;
+		float _result;
+ 
 	public:
 		RPN(void);
-		RPN(std::string operation);
+		RPN(std::string _operation);
 		RPN(const RPN &cpy);
 		~RPN(void);
-		
-		RPN& operation=(const RPN &src);
-		
-			
-}
+
+		RPN& operator=(const RPN &src);
+
+		bool Calculate(std::string _operation);
+		bool isValid(std::string _operation);
+		bool executor(void);
+};
 
 #endif
