@@ -51,39 +51,29 @@ bool RPN::calculate(std::stack<float> &stack, char op)
 		stack.push(_result);
 		return true;
 	}
-	if (op == '*')
+	else if (op == '*')
 	{
 		_result = n1 * n2;
 		stack.push(_result);
 		return true;
 	}
-	if (op == '/')
+	else if (op == '/')
 	{
 		_result = n2 / n1;
 		stack.push(_result);
 		return true;
 	}
-	return false;
-}
 
-bool RPN::isValid(std::string operation)
-{
-	if(!isdigit(operation[0]))
-		return false;
-	return true;
+	return false;
 }
 
 bool RPN::executor(void)
 {
-	if (!isValid(_operation)){
-		std::cout << "Teste " << _operation << std::endl;
-		return false;
-	}
 	std::stack<float> myStack;
 
 	for (size_t i = 0; i < _operation.size(); i++)
 	{
-		if(isOperation(_operation[i]) && myStack.size() == 2)
+		if(isOperation(_operation[i]) && myStack.size() >= 2)
 			calculate(myStack, _operation[i]);
 		if (isdigit(_operation[i]))
 		{
@@ -93,8 +83,12 @@ bool RPN::executor(void)
 		}
 	}
 
-	std::cout << "Result: " << _result << std::endl;
-	std::cout << myStack.top() << std::endl;
+	if (myStack.size() == 1)
+	{
+		_result = myStack.top();
+		return true;
+	}else
+		return false;
 	return true;
 }
 
@@ -110,4 +104,8 @@ bool RPN::isOperation(char operation)
 		return true;
 	else
 		return false;
+}
+
+int RPN::getResult(void){
+	return _result;
 }

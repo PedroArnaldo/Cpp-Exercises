@@ -6,6 +6,8 @@ int main(int argc, char **argv)
 		RPN rpn(argv[1]);
 		if(!rpn.executor())
 			std::cout << "Error";
+		else
+			std::cout << rpn.getResult();
 	} else
 		std::cout << "Error" << std::endl;
 	return (0);

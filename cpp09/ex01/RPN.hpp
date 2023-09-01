@@ -4,13 +4,14 @@
 #include <iostream>
 #include <stack>
 #include <string>
+#include <cstring>
 #include <stdlib.h>     /* atof */
 
 class RPN {
 
 	private:
 		std::string _operation;
-		float _result;
+		int _result;
  
 	public:
 		RPN(void);
@@ -21,9 +22,9 @@ class RPN {
 		RPN& operator=(const RPN &src);
 
 		bool calculate(std::stack<float> &stack, char op);
-		bool isValid(std::string operation);
 		bool executor(void);
 		bool isOperation(char operation);
+		int getResult(void);
 };
 
 #endif
