@@ -4,7 +4,9 @@
 int main(int argc, char **argv)
 {
     if (argc == 2){
-        BitcoinExchange btc(argv[1]);
+        std::fstream inputFile(argv[1], std::ios::in);
+        if (inputFile.fail())
+            BitcoinExchange btc(inputFile);
         /*
          1- ler o valores no data.csv
          2- tranforma os valores em maps

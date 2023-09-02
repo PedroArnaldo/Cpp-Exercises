@@ -7,9 +7,8 @@ BitcoinExchange::BitcoinExchange(void) :
 
 }
 
-BitcoinExchange::BitcoinExchange(std::string fileNameInput) :
-    _fileNameData("data.csv"),
-    _fileNameInput(fileNameInput)
+BitcoinExchange::BitcoinExchange(std::fstream& inputFile) :
+   _inputFile(inputFile)
 {
 
 }

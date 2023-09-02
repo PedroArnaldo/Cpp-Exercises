@@ -13,10 +13,11 @@ class BitcoinExchange
         std::map<int, float> _btcInput;
         std::string _fileNameData;
         std::string _fileNameInput;
+        std::fstream& _inputFile;
 
     public:
         BitcoinExchange(void);
-        BitcoinExchange(std::string fileName);
+        BitcoinExchange(std::fstream& inputFile);
         BitcoinExchange(const BitcoinExchange &cpy);
         ~BitcoinExchange();
 
