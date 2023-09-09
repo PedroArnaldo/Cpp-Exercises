@@ -18,3 +18,7 @@ Module CPP
   - About: type casting.
 - Module 07 :
   - About: templates.
+- Module 08 :
+  - About: introduction to the <algorithm> library.
+- Module 09 :
+  - About: containers.
