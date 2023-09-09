@@ -27,3 +27,17 @@ const char* errorInputFile::what() const throw(){
 const char* lineInvalidFormat::what() const throw(){
     return "Error: line invalid format.";
 }
+
+badInput::badInput(std::string line)
+{
+    this->message = "Error: bad input => ";
+    this->message.append(line);
+}
+
+badInput::~badInput() throw()
+{
+}
+
+const char* badInput::what() const throw(){
+    return this->message.c_str();
+}

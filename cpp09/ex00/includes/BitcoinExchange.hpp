@@ -3,6 +3,8 @@
 
 #include <map>
 #include <fstream>
+#include <sstream>
+#include <cctype>
 #include <string>
 #include <iostream>
 #include "../includes/Exceptions.hpp"

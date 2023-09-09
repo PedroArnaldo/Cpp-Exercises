@@ -2,6 +2,7 @@
 #define EXCEPTIONS_HPP
 
 #include <exception>
+#include <string>
 
 class cannotOpenfile: public std::exception
 {
@@ -27,27 +28,31 @@ class manyArguments: public std::exception
         virtual const char* what() const throw();
 };
 
-class noArg:public std::exception
+class noArg: public std::exception
 {
     public: 
         virtual const char* what() const throw();
 };
 
-class errorInputFile:public std::exception
+class errorInputFile: public std::exception
 {
     public: 
         virtual const char* what() const throw();
 };
 
-class lineInvalidFormat:public std::exception
+class lineInvalidFormat: public std::exception
 {
     public: 
         virtual const char* what() const throw();
 };
 
-class badInput:public std::exception
+class badInput: public std::exception
 {
-    public: 
+    private:
+        std::string message;
+    public:
+        virtual ~badInput() throw();
+        badInput(std::string line);
         virtual const char* what() const throw();
 };
 

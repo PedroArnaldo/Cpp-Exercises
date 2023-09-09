@@ -67,7 +67,38 @@ void BitcoinExchange::getDataBase(std::string dataBase)
 
 void BitcoinExchange::validLine(std::string line)
 {
-    (void) line;
+    std::string date;
+    size_t pos = line.find("|");
+    if (pos != std::string::npos)
+    {
+        date = line.substr(0, pos - 1);
+        if (date.size() != 10)
+            throw badInput(line);
+        if (date[4] != '-' || date[7] != '-')
+            throw badInput(line);
+        for (size_t i = 0; i < date.size(); i++)
+        {
+            if(i == 4 || i == 7)
+                continue;
+            if (!std::isdigit(date[i]))
+                throw badInput(line);
+        }
+        
+        std::string value = line.substr(pos+1);
+        if (!value.empty() && value[0] == ' ')
+        {
+            value = value.substr(1);
+            float result;
+            std::istringstream iss(value);
+            iss >> std::noskipws >> result;
+            if (iss.fail() || !iss.eof())
+                throw badInput(line);
+        }
+        else
+            throw badInput(line);
+    }
+    else
+       throw badInput(line);
 }
 
 void BitcoinExchange::printValues(std::string filename)
@@ -84,8 +115,7 @@ void BitcoinExchange::printValues(std::string filename)
         std::getline(file, line);
         if (line != "date | value")
             throw errorInputFile();
-        std::getline(file, line);
-        while (file)
+        while (std::getline(file, line))
         {
             try
             {
@@ -95,13 +125,12 @@ void BitcoinExchange::printValues(std::string filename)
                     size_t pos = line.find("|");
                     date = line.substr(0, pos-1);
                     amount = line.substr(pos+1);
-                    std::cout << date << " " << amount << std::endl;
+                  //  std::cout << date << " " << amount << std::endl;
                     //ainda falta tranforma os valores para o tipo da map, vou faze validação e voltarei para arrumar isso
                     (void) amountValue;
                     (void) dateValue;
 
                 }
-                std::getline(file, line);
             }
             catch(const std::exception& e)
             {
