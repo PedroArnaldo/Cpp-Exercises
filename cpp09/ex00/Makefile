@@ -1,6 +1,6 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 
-SRCS = main.cpp
+SRCS = ./src/main.cpp ./src/Exceptions.cpp ./src/BitcoinExchange.cpp ./src/Date.cpp
 OBJS = $(SRCS:.cpp=.o)
 TARGET = btc
 
