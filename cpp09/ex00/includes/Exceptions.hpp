@@ -56,4 +56,22 @@ class badInput: public std::exception
         virtual const char* what() const throw();
 };
 
+class notPositiveNum: public std::exception
+{
+    public: 
+        virtual const char* what() const throw();
+};
+
+class LargeNum: public std::exception
+{
+    public: 
+        virtual const char* what() const throw();
+};
+
+class notFound: public std::exception
+{
+    public: 
+        virtual const char* what() const throw();
+};
+
 #endif

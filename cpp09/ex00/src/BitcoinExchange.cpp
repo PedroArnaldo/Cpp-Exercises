@@ -101,6 +101,34 @@ void BitcoinExchange::validLine(std::string line)
        throw badInput(line);
 }
 
+void BitcoinExchange::search(unsigned int datevalue, float amount, std::string date)
+{
+    if (amount < 0)
+        throw notPositiveNum();
+    if (amount > 1000)
+        throw LargeNum();
+
+    std::map<unsigned int, float>::iterator it = this->_dataBase.find(datevalue);
+
+    if (it != this->_dataBase.end())
+    {
+        double value = it->second;
+        std::cout << date << " => " << amount << " = " << amount * value << std::endl;
+    }
+    else
+    {
+        it = this->_dataBase.lower_bound(datevalue);
+        if (it != this->_dataBase.begin())
+        {
+            --it;
+             double value = it->second;
+            std::cout << date << " => " << amount << " = " << amount * value << std::endl;
+        }
+        else
+            throw notFound();
+    }
+}   
+
 void BitcoinExchange::printValues(std::string filename)
 {
     std::ifstream file(filename.c_str());
@@ -108,7 +136,7 @@ void BitcoinExchange::printValues(std::string filename)
     std::string date;
     std::string amount;
     unsigned int dateValue;
-    float amountValue;
+    double amountValue;
 
     if (file.is_open())
     {
@@ -124,12 +152,10 @@ void BitcoinExchange::printValues(std::string filename)
                     validLine(line);
                     size_t pos = line.find("|");
                     date = line.substr(0, pos-1);
+                    dateValue = Date::convertDate(date);
                     amount = line.substr(pos+1);
-                  //  std::cout << date << " " << amount << std::endl;
-                    //ainda falta tranforma os valores para o tipo da map, vou faze validação e voltarei para arrumar isso
-                    (void) amountValue;
-                    (void) dateValue;
-
+                    amountValue = static_cast<float>(std::atof(amount.c_str()));
+                    search(dateValue, amountValue, date);
                 }
             }
             catch(const std::exception& e)

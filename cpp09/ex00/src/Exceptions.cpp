@@ -41,3 +41,15 @@ badInput::~badInput() throw()
 const char* badInput::what() const throw(){
     return this->message.c_str();
 }
+
+const char* notPositiveNum::what() const throw(){
+    return "Error: not a positive number.";
+}
+
+const char* LargeNum::what() const throw(){
+    return "Error: too large a number.";
+}
+
+const char* notFound::what() const throw(){
+    return "Error: no value found.";
+}
