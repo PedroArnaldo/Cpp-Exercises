@@ -7,7 +7,7 @@ int main(int argc, char **argv)
 		if(!rpn.executor())
 			std::cout << "Error";
 		else
-			std::cout << rpn.getResult();
+			std::cout << rpn.getResult() << std::endl;
 	} else
 		std::cout << "Error" << std::endl;
 	return (0);

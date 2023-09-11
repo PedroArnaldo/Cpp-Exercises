@@ -5,7 +5,9 @@
 #include <stack>
 #include <string>
 #include <cstring>
-#include <stdlib.h>     /* atof */
+#include <stdlib.h>  
+#include <sstream>
+#include <cctype>
 
 class RPN {
 
@@ -23,6 +25,7 @@ class RPN {
 
 		bool calculate(std::stack<float> &stack, char op);
 		bool executor(void);
+		bool isValid(void);
 		bool isOperation(char operation);
 		int getResult(void);
 };

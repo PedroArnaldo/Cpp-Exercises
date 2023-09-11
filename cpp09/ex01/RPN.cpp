@@ -71,6 +71,9 @@ bool RPN::executor(void)
 {
 	std::stack<float> myStack;
 
+	if(!isValid())
+		return false;
+
 	for (size_t i = 0; i < _operation.size(); i++)
 	{
 		if(isOperation(_operation[i]) && myStack.size() >= 2)
@@ -104,6 +107,24 @@ bool RPN::isOperation(char operation)
 		return true;
 	else
 		return false;
+}
+
+bool RPN::isValid(void)
+{
+	std::istringstream iss(_operation);
+	std::string token;
+
+	while (std::getline(iss, token, ' '))
+	{
+		if (isOperation(token[0]) && (token[1] && isOperation(token[1])))
+			continue;
+		if (token.size() != 1)
+			return false;
+		else if ((token.size() != 1 && !std::isdigit(token[0])) && (atof(token.c_str()) < 0 || atof(token.c_str()) > 9)) 
+			return false;
+	}
+
+	return true;
 }
 
 int RPN::getResult(void){
